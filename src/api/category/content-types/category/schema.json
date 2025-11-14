@@ -20,6 +20,12 @@
       "relation": "manyToMany",
       "target": "api::recipe.recipe",
       "inversedBy": "categories"
+    },
+    "groceries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::grocery.grocery",
+      "inversedBy": "categories"
     }
   }
 }
