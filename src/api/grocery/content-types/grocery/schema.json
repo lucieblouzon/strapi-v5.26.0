@@ -11,7 +11,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "List": {
+    "ShoppingList": {
       "type": "text",
       "required": false
     },
@@ -21,16 +21,8 @@
       "target": "api::category.category",
       "mappedBy": "groceries"
     },
-    "items": {
-      "type": "enumeration",
-      "enum": [
-        "Milk",
-        "Flour",
-        "Sugar",
-        "Salt",
-        "Cheese",
-        "Mustard"
-      ]
+    "ShoppingDate": {
+      "type": "date"
     }
   }
 }
