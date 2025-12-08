@@ -459,37 +459,6 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
-  info: {
-    description: 'Organize your content into categories';
-    displayName: 'Category';
-    pluralName: 'categories';
-    singularName: 'category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    groceries: Schema.Attribute.Relation<'manyToMany', 'api::grocery.grocery'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    recipes: Schema.Attribute.Relation<'manyToMany', 'api::recipe.recipe'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   collectionName: 'footers';
   info: {
@@ -551,39 +520,6 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiGroceryGrocery extends Struct.CollectionTypeSchema {
-  collectionName: 'groceries';
-  info: {
-    displayName: 'Grocery';
-    pluralName: 'groceries';
-    singularName: 'grocery';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    categories: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::category.category'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::grocery.grocery'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    ShoppingDate: Schema.Attribute.Date;
-    ShoppingList: Schema.Attribute.Text;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
   collectionName: 'headers';
   info: {
@@ -611,42 +547,6 @@ export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     Subtitle: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
-  collectionName: 'recipes';
-  info: {
-    displayName: 'Recipe';
-    pluralName: 'recipes';
-    singularName: 'recipe';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    categories: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::category.category'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    Description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::recipe.recipe'
-    > &
-      Schema.Attribute.Private;
-    Name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1164,12 +1064,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
-      'api::category.category': ApiCategoryCategory;
       'api::footer.footer': ApiFooterFooter;
       'api::global.global': ApiGlobalGlobal;
-      'api::grocery.grocery': ApiGroceryGrocery;
       'api::header.header': ApiHeaderHeader;
-      'api::recipe.recipe': ApiRecipeRecipe;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
